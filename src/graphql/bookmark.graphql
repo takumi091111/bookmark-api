@@ -1,0 +1,11 @@
+# import Tag from 'tag.graphql'
+
+type Bookmark {
+  id: ID!
+  title: String!
+  description: String!
+  url: String!
+  tags: [Tag]!
+  createdAt: String!
+  updatedAt: String!
+}

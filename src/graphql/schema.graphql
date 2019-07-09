@@ -1,0 +1,22 @@
+# import Tag from 'tag.graphql'
+# import Bookmark from 'bookmark.graphql'
+# import { SearchBookmarkInput, AddBookmarkInput, UpdateBookmarkInput } from 'bookmarkInput.graphql'
+# import { SearchTagInput, AddTagInput, UpdateTagInput } from 'tagInput.graphql'
+
+type Query {
+  tag(id: ID!): Tag
+  tags: [Tag]
+  searchTag(input: [SearchTagInput]!): [Tag]
+  bookmark(id: ID!):  Bookmark
+  bookmarks: [Bookmark]
+  searchBookmark(input: [SearchBookmarkInput]!): [Bookmark]
+}
+
+type Mutation {
+  addTag(input: AddTagInput!): Tag
+  updateTag(input: UpdateTagInput!): Tag
+  deleteTag(id: ID!): Boolean
+  addBookmark(input: AddBookmarkInput!): Bookmark
+  updateBookmark(input: UpdateBookmarkInput!): Bookmark
+  deleteBookmark(id: ID!): Boolean
+}

@@ -1,0 +1,15 @@
+input SearchTagInput {
+  id: ID
+  name: String
+  createdAt: String
+  updatedAt: String
+}
+
+input AddTagInput {
+  name: String!
+}
+
+input UpdateTagInput {
+  id: ID!
+  name: String
+}

@@ -1,0 +1,25 @@
+# import { AddTagInput } from 'tagInput.graphql'
+
+input SearchBookmarkInput {
+  id: ID
+  title: String
+  description: String
+  url: String
+  tags: SearchTagInput
+  createdAt: String
+  updatedAt: String
+}
+
+input AddBookmarkInput {
+  title: String!
+  description: String!
+  url: String!
+  tags: [AddTagInput]
+}
+
+input UpdateBookmarkInput {
+  id: String!
+  title: String
+  description: String
+  url: String
+}
