@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  CreateDateColumn,
+  UpdateDateColumn
+} from 'typeorm'
 
 @Entity()
 export class Tag {
@@ -16,12 +22,12 @@ export class Tag {
 
   public get createdAt() {
     const createdAt = this._createdAt
-    return (createdAt) ? createdAt.toLocaleString() : void 0
+    return createdAt ? createdAt.toLocaleString() : void 0
   }
 
   public get updatedAt() {
     const updatedAt = this._updatedAt
-    return (updatedAt) ? updatedAt.toLocaleString() : void 0
+    return updatedAt ? updatedAt.toLocaleString() : void 0
   }
 
   constructor(id: string, name: string) {

@@ -4,7 +4,12 @@ import { AddBookmarkInput, UpdateBookmarkInput } from '~/interfaces'
 
 const service = new BookmarkService()
 
-const bookmark = async (_parent: any, args: { id: string }, _ctx: any, _info: any) => {
+const bookmark = async (
+  _parent: any,
+  args: { id: string },
+  _ctx: any,
+  _info: any
+) => {
   const bookmark = await service.findById(args.id)
   return bookmark
 }
@@ -14,24 +19,44 @@ const bookmarks = async () => {
   return bookmarks
 }
 
-const searchBookmark = async (_parent: any, args: { input: Partial<Bookmark>[] }, _ctx: any, _info: any) => {
+const searchBookmark = async (
+  _parent: any,
+  args: { input: Partial<Bookmark>[] },
+  _ctx: any,
+  _info: any
+) => {
   const bookmarks = await service.search(args.input)
   return bookmarks
 }
 
-const addBookmark = async (_parent: any, args: { input: AddBookmarkInput }, _ctx: any, _info: any) => {
+const addBookmark = async (
+  _parent: any,
+  args: { input: AddBookmarkInput },
+  _ctx: any,
+  _info: any
+) => {
   const { tags } = args.input
   args.input.tags = [...new Set(tags)]
   const bookmark = await service.insert(args.input)
   return bookmark
 }
 
-const updateBookmark = async (_parent: any, args: { input: UpdateBookmarkInput }, _ctx: any, _info: any) => {
-  return await service.update(args.input)
+const updateBookmark = async (
+  _parent: any,
+  args: { input: UpdateBookmarkInput },
+  _ctx: any,
+  _info: any
+) => {
+  return service.update(args.input)
 }
 
-const deleteBookmark = async (_parent: any, args: { id: string }, _ctx: any, _info: any) => {
-  return await service.delete(args.id)
+const deleteBookmark = async (
+  _parent: any,
+  args: { id: string },
+  _ctx: any,
+  _info: any
+) => {
+  return service.delete(args.id)
 }
 
 export const bookmarkQuery = {

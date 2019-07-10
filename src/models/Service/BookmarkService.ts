@@ -4,17 +4,17 @@ import { TagRepository, BookmarkRepository } from '~/models/Repository'
 import { AddBookmarkInput, UpdateBookmarkInput } from '~/interfaces'
 
 export class BookmarkService extends Service {
-  async findAll () {
+  async findAll() {
     const bookmarkRepo = await this.getCustomRepository(BookmarkRepository)
     return bookmarkRepo.findAll()
   }
 
-  async findById (id: string) {
+  async findById(id: string) {
     const bookmarkRepo = await this.getCustomRepository(BookmarkRepository)
     return bookmarkRepo.findById(id)
   }
 
-  async insert (input: AddBookmarkInput) {
+  async insert(input: AddBookmarkInput) {
     const { title, description, url, tags } = input
 
     const bookmarkRepo = await this.getCustomRepository(BookmarkRepository)
@@ -39,18 +39,24 @@ export class BookmarkService extends Service {
 
     // 登録済みタグと入力値タグの差分を取得して、インスタンスを生成
     const missingTags = tags.filter(tag => names.indexOf(tag.name) === -1)
-    const missingTagInstaces = missingTags.map(tag => tagRepo.create({
-      id: this.generateId(),
-      name: tag.name
-    }))
+    const missingTagInstaces = missingTags.map(tag =>
+      tagRepo.create({
+        id: this.generateId(),
+        name: tag.name
+      })
+    )
 
-    return bookmarkRepo.saveWithTags(bookmark, registeredTags, missingTagInstaces)
+    return bookmarkRepo.saveWithTags(
+      bookmark,
+      registeredTags,
+      missingTagInstaces
+    )
   }
 
-  async update (input: UpdateBookmarkInput) {
+  async update(input: UpdateBookmarkInput) {
     const { id } = input
     const bookmarkRepo = await this.getCustomRepository(BookmarkRepository)
-    
+
     const bookmark = await bookmarkRepo.findById(id)
     if (!bookmark) return
 
@@ -61,7 +67,7 @@ export class BookmarkService extends Service {
     return bookmarkRepo.findById(id)
   }
 
-  async delete (id: string) {
+  async delete(id: string) {
     const bookmarkRepo = await this.getCustomRepository(BookmarkRepository)
 
     const bookmark = await bookmarkRepo.findById(id)
@@ -71,7 +77,7 @@ export class BookmarkService extends Service {
     return true
   }
 
-  async search (input: Partial<Bookmark> | Partial<Bookmark>[]) {
+  async search(input: Partial<Bookmark> | Partial<Bookmark>[]) {
     const bookmarkRepo = await this.getCustomRepository(BookmarkRepository)
     return bookmarkRepo.search(input)
   }

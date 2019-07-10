@@ -6,7 +6,7 @@ export class BookmarkRepository extends Repository<Bookmark> {
   findAll() {
     return this.find()
   }
-  
+
   findById(id: string) {
     return this.findOne({ id })
   }
@@ -16,7 +16,7 @@ export class BookmarkRepository extends Repository<Bookmark> {
       const missingTags = await entityManager.save(newTags)
       const tags = [...registeredTags, ...missingTags]
       bookmark.tags = tags
-      return await entityManager.save(bookmark)
+      return entityManager.save(bookmark)
     })
   }
 

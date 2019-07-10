@@ -1,5 +1,11 @@
 import uuidv4 from 'uuid/v4'
-import { getConnection, createConnection, Connection, ConnectionOptions, ObjectType } from 'typeorm'
+import {
+  getConnection,
+  createConnection,
+  Connection,
+  ConnectionOptions,
+  ObjectType
+} from 'typeorm'
 import { DB_HOST, DB_PORT, DB_USER, DB_PW, DB_NAME } from '~/utils/env'
 import { Tag, Bookmark } from '~/models/Entity'
 
@@ -10,10 +16,7 @@ const options: ConnectionOptions = {
   username: DB_USER,
   password: DB_PW,
   database: DB_NAME,
-  entities: [
-    Tag,
-    Bookmark
-  ],
+  entities: [Tag, Bookmark],
   synchronize: true,
   logging: false
 }
@@ -24,7 +27,7 @@ export class Service {
 
     try {
       connection = getConnection()
-    } catch(err) {
+    } catch (err) {
       connection = await createConnection(options)
     }
 
@@ -37,6 +40,6 @@ export class Service {
   }
 
   public generateId() {
-    return uuidv4().replace(/\-/g, '')
+    return uuidv4().replace(/-/g, '')
   }
 }

@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from 'typeorm'
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToMany,
+  JoinTable
+} from 'typeorm'
 import { Tag } from '~/models/Entity'
 
 @Entity()
@@ -30,12 +38,12 @@ export class Bookmark {
 
   public get createdAt() {
     const createdAt = this._createdAt
-    return (createdAt) ? createdAt.toLocaleString() : void 0
+    return createdAt ? createdAt.toLocaleString() : void 0
   }
 
   public get updatedAt() {
     const updatedAt = this._updatedAt
-    return (updatedAt) ? updatedAt.toLocaleString() : void 0
+    return updatedAt ? updatedAt.toLocaleString() : void 0
   }
 
   constructor(id: string, title: string, description: string, url: string) {
